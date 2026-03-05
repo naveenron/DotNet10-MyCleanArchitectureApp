@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyCleanArchitectureApp.API.Middleware;
 using MyCleanArchitectureApp.Application.Commands;
 using MyCleanArchitectureApp.Application.Interfaces;
 using MyCleanArchitectureApp.Application.Queries;
@@ -23,6 +24,11 @@ public static class DependencyInjection
 
         // Repo
         services.AddScoped<IUserRepository, UserRepository>();
+
+        // Global Exception Handler
+        services.AddExceptionHandler<GlobalExceptionHandler>();
+        services.AddProblemDetails();
+
         return services;
     }
 }
